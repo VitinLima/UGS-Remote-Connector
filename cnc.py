@@ -26,7 +26,7 @@ if __name__=="__main__":
     input_thread.start()
     while flag:
       while ser.in_waiting>0:
-        print(ser.read.decode(), end='', flush=True)
+        print(ser.read().decode(), end='', flush=True)
       while input_thread.in_buffer:
         line = input_thread.readline()
         if line=="^C\n":
