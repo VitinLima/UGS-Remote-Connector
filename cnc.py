@@ -4,33 +4,34 @@ import sys
 import threading
 
 class InputHandler(threading.Thread):
+  def __init__(self, ser):
+    super().__init__(self)
+    self.ser = ser
+  
   def run(self):
     self.running = True
-    self.lines = []
-    self.in_buffer = 0
     while self.running:
-      self.lines.append(sys.stdin.readline())
-      self.in_buffer += 1
+      while self.ser.in_waiting>0:
+        print(self.ser.read().decode(), end='', flush=True)
   
-  def readline(self):
-    self.in_buffer -= 1
-    return self.lines.pop(0)
+  # def readline(self):
+  #   self.in_buffer -= 1
+  #   return self.lines.pop(0)
 
 
 if __name__=="__main__":
+  flag = True
   with serial.Serial('/dev/ttyACM0', 115200) as ser:
   # with serial.Serial('/dev/ttyUSB0', 115200) as ser:
-    flag = True
-    input_thread = InputHandler()
+    input_thread = InputHandler(ser)
     input_thread.daemon = True
     input_thread.start()
     while flag:
-      while ser.in_waiting>0:
-        print(ser.read().decode(), end='', flush=True)
-      while input_thread.in_buffer:
-        line = input_thread.readline()
-        if line=="^C\n":
-          flag = False
-          input_thread.running = False
-        else:
-          ser.write(bytes(line,'utf-8'))
+      line = sys.stdin.readline()
+      if line=="^C\n":
+        flag = False
+        input_thread.running = False
+      else:
+        ser.write(bytes(line,'utf-8'))
+    input_thread.running = False
+    input_thread.join()
