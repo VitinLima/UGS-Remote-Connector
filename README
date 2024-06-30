@@ -10,3 +10,7 @@ Connect to the lab wifi, launch UGS and connect to the TCP server: host=cncpi po
 To troubleshoot, connect to the rasp through SSH: ssh pi@cncpi.local
 
 Beware pyserial is required to connect to the cnc, and accessing the usb port requires special permissions on linux. The sleep in crontab serves to wait until the system has finished booting before launching, and the user pi (or whatever user) must be in dialout group (sudo adduser pi dialout)
+
+For testing, you can use this line in crontab instead:
+* * * * * USER=pi programdir=<fullpath-to-the-repository> {$programdir}/cnc.sh >{$programdir}/log.txt 2>&1
+This will launch the application everyminute, instead of having to reboot the rasp everytime
