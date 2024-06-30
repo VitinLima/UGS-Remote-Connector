@@ -14,3 +14,11 @@ Beware pyserial is required to connect to the cnc, and accessing the usb port re
 For testing, you can use this line in crontab instead:
 * * * * * USER=pi programdir=<fullpath-to-the-repository> {$programdir}/cnc.sh >{$programdir}/log.txt 2>&1
 This will launch the application everyminute, instead of having to reboot the rasp everytime
+
+Script to run on fresh rasp ("yes | init-script.sh" for skipping all yes/no prompts so you can go brew your coffee while you wait :D ):
+sudo apt update                              
+sudo apt upgrade
+sudo apt install pip
+sudo pip install pyserial
+sudo apt install git
+git clone https://github.com/VitinLima/UGS-Remote-Connector.git
