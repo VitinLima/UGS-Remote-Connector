@@ -18,7 +18,6 @@ class InputHandler(threading.Thread):
   #   self.in_buffer -= 1
   #   return self.lines.pop(0)
 
-
 if __name__=="__main__":
   flag = True
   # with serial.Serial('/dev/ttyACM0', 115200) as ser:
@@ -30,7 +29,7 @@ if __name__=="__main__":
       line = sys.stdin.readline()
       if line=="^C\n":
         flag = False
-        input_thread.running = False
+        input_thread.ruAnning = False
       else:
         ser.write(bytes(line,'utf-8'))
     input_thread.running = False
