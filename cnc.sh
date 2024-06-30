@@ -1,4 +1,4 @@
-programdir="/home/vitinho/UGS-Remote-Connector"
+#programdir="/home/vitinho/UGS-Remote-Connector"
 #echo ${USER} > $programdir/userinfo.txt
 mkfifo $programdir/p1 $programdir/p2
 #python $programdir/cnc.py <$programdir/p2 >$programdir/pyout.txt 2>&1 &
