@@ -1,0 +1,10 @@
+Allow UGS (Universal GCode Sender) to connect to a CNC machine through a TCP server on a raspberry pi connected to the machine
+
+In order to launch the code on boot on the rasp, use crontab:
+
+> crontab -e
+Add the following line to the crontab file:
+@reboot sleep 10 USER=pi && programdir=<fullpath-to-the-repository> {$programdir}/cnc.sh >{$programdir}/log.txt 2>&1
+
+Connect to the lab wifi, launch UGS and connect to the TCP server: host=cncpi port=4444
+To troubleshoot, connect to the rasp through SSH: ssh pi@cncpi.local
