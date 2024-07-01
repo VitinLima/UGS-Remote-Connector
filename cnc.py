@@ -17,7 +17,6 @@ class InputHandler(threading.Thread):
         if incomming.endswith('ok\r\n'):
             print(incomming, end='', flush=True)
             incomming = ''
-            print("ok", flush=True)
   
   # def readline(self):
   #   self.in_buffer -= 1
