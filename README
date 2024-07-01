@@ -16,8 +16,7 @@ For testing, you can use this line in crontab instead:
 This will launch the application everyminute, instead of having to reboot the rasp everytime
 
 Script to run on fresh rasp ("yes | init-script.sh" for skipping all yes/no prompts so you can go brew your coffee while you wait :D ):
-sudo apt update                              
-sudo apt upgrade
+sudo apt update
 sudo apt install pip
 pip install pyserial
 sudo apt install git
