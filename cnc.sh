@@ -7,4 +7,4 @@ NCID=$!
 python $programdir/cnc.py <$programdir/p2 >$programdir/p1
 # 2>&1
 rm -rf $programdir/p1 $programdir/p2
-kill NCID
+kill $NCID

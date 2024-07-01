@@ -20,8 +20,8 @@ class InputHandler(threading.Thread):
 
 if __name__=="__main__":
   flag = True
-  # with serial.Serial('/dev/ttyACM0', 115200) as ser:
-  with serial.Serial('/dev/ttyUSB0', 115200) as ser:
+  with serial.Serial('/dev/ttyACM0', 115200) as ser:
+  # with serial.Serial('/dev/ttyUSB0', 115200) as ser:
     input_thread = InputHandler(ser)
     input_thread.daemon = True
     input_thread.start()
