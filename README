@@ -1,5 +1,8 @@
 Allow UGS (Universal GCode Sender) to connect to a CNC machine through a TCP server on a raspberry pi connected to the machine
 
+To launch the code manually, use:
+programdir=<fullpath-to-the-repository> ./cnc.sh 
+
 In order to launch the code on boot on the rasp, use crontab:
 
 > crontab -e
