@@ -10,9 +10,14 @@ class InputHandler(threading.Thread):
   
   def run(self):
     self.running = True
+    incomming = ''
     while self.running:
       while self.ser.in_waiting>0:
-        print(self.ser.read().decode(), end='', flush=True)
+        incomming += self.ser.read().decode()
+        if incomming.endswith('ok\r\n'):
+            print(incomming, end='', flush=True)
+            incomming = ''
+            print("ok", flush=True)
   
   # def readline(self):
   #   self.in_buffer -= 1
@@ -21,7 +26,7 @@ class InputHandler(threading.Thread):
 if __name__=="__main__":
   flag = True
   with serial.Serial('/dev/ttyACM0', 115200) as ser:
-  # with serial.Serial('/dev/ttyUSB0', 115200) as ser:
+#   with serial.Serial('/dev/ttyUSB0', 115200) as ser:
     input_thread = InputHandler(ser)
     input_thread.daemon = True
     input_thread.start()
@@ -29,7 +34,7 @@ if __name__=="__main__":
       line = sys.stdin.readline()
       if line=="^C\n":
         flag = False
-        input_thread.ruAnning = False
+        input_thread.running = False
       else:
         ser.write(bytes(line,'utf-8'))
     input_thread.running = False
