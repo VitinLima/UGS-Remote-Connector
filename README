@@ -19,6 +19,6 @@ Script to run on fresh rasp ("yes | init-script.sh" for skipping all yes/no prom
 sudo apt update                              
 sudo apt upgrade
 sudo apt install pip
-sudo pip install pyserial
+pip install pyserial
 sudo apt install git
 git clone https://github.com/VitinLima/UGS-Remote-Connector.git
