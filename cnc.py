@@ -29,12 +29,14 @@ if __name__=="__main__":
     input_thread = InputHandler(ser)
     input_thread.daemon = True
     input_thread.start()
-    while flag:
-      line = sys.stdin.readline()
-      if line=="^C\n":
-        flag = False
-        input_thread.running = False
-      else:
-        ser.write(bytes(line,'utf-8'))
+    with open("log.txt", 'w') as f:
+      while flag:
+        line = sys.stdin.readline()
+        if line=="^C\n":
+          flag = False
+          input_thread.running = False
+        else:
+          ser.write(bytes(line,'utf-8'))
+          f.write(bytes(line,'utf-8'))
     input_thread.running = False
     input_thread.join()
