@@ -37,6 +37,6 @@ if __name__=="__main__":
           input_thread.running = False
         else:
           ser.write(bytes(line,'utf-8'))
-          f.write(bytes(line,'utf-8'))
+          f.write(str(bytes(line,'utf-8')))
     input_thread.running = False
     input_thread.join()
