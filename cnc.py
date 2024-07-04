@@ -13,10 +13,10 @@ class InputHandler(threading.Thread):
     incomming = ''
     while self.running:
       while self.ser.in_waiting>0:
-        incomming += self.ser.read().decode()
-        if incomming.endswith('ok\r\n'):
-            print(incomming, end='', flush=True)
-            incomming = ''
+        c = self.ser.read().decode()
+        with open("cncout.txt", 'w') as f:
+          f.write(c)
+        print(c, end='', flush=True)
   
   # def readline(self):
   #   self.in_buffer -= 1
