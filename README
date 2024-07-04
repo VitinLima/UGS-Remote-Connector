@@ -2,6 +2,7 @@ Allow UGS (Universal GCode Sender) to connect to a CNC machine through a TCP ser
 
 To launch the code manually, use:
 programdir=<fullpath-to-the-repository> ./cnc.sh 
+programdir=/home/pi/UGS-Remote-Connector ./cnc.sh 
 
 In order to launch the code on boot on the rasp, use crontab:
 
